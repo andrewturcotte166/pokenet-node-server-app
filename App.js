@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import "dotenv/config";
 import UserRoutes from "./Users/routes.js";
+import PokemonRoutes from "./Pokemon/routes.js"
 const CONNECTION_STRING = process.env.DB_CONNECTION_STRING || 'mongodb://127.0.0.1:27017/pokenet'
 mongoose.connect(CONNECTION_STRING);
 const app = express()
@@ -16,7 +17,7 @@ app.use(
 const sessionOptions = {
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
 };
 if (process.env.NODE_ENV !== "development") {
     sessionOptions.proxy = true;
@@ -28,4 +29,5 @@ if (process.env.NODE_ENV !== "development") {
 app.use(session(sessionOptions));
 app.use(express.json());
 UserRoutes(app);
+PokemonRoutes(app);
 app.listen(process.env.PORT || 4000)

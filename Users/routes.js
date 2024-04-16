@@ -12,7 +12,11 @@ export default function UserRoutes(app) {
         const users = await dao.findAllUsers();
         res.json(users);
     };
-    const findUserById = async (req, res) => { };
+    const findUserById = async (req, res) => { 
+        const { userId } = req.params;
+        const user = await dao.findUserById(userId);
+        res.json(user);
+    };
     const updateUser = async (req, res) => {
         const { userId } = req.params;
         const status = await dao.updateUser(userId, req.body);
@@ -50,8 +54,7 @@ export default function UserRoutes(app) {
         res.sendStatus(200);
     };
     const profile = async (req, res) => {
-        // TODO: replace with commented out code when loggin in is implemented
-        const currentUser = await dao.findUserByUsername("test"); // req.session["currentUser"];
+        const currentUser = req.session["currentUser"];
         if (!currentUser) {
             res.sendStatus(401);
             return;
