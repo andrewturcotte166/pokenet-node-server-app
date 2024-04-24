@@ -19,7 +19,7 @@ export default function UserRoutes(app) {
     };
     const updatePokemon = async (req, res) => {
         const { pokemonId } = req.params;
-        const status = await dao.updateUser(pokemonId, req.body);
+        const status = await dao.updatePokemon(pokemonId, req.body);
         res.json(status);
     };
     app.post("/api/pokemon", createPokemon);
