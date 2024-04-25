@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
     favoriteType: String,
     email: String,
     dob: Date,
+    professorId: String,
     role: {
         type: String,
         enum: ["TRAINER", "PROFESSOR", "USER"],
