@@ -17,6 +17,11 @@ export default function UserRoutes(app) {
         const user = await dao.findUserByUsername(username);
         res.json(user);
     };
+    const findUserById = async (req, res) => {
+        const { userId } = req.params;
+        const user = await dao.findUserById(userId);
+        res.json(user);
+    };
     const findUsersByProfessor = async (req, res) => {
         const { professorId } = req.params;
         const users = await dao.findUserByProfessor(professorId);
@@ -69,6 +74,7 @@ export default function UserRoutes(app) {
     app.post("/api/users", createUser);
     app.get("/api/users", findAllUsers);
     app.get("/api/users/:username", findUserByUsername);
+    app.get("/api/users/id/:userId", findUserById);
     app.get("/api/users/professor/:professorId", findUsersByProfessor);
     app.put("/api/users/:userId", updateUser);
     app.delete("/api/users/:userId", deleteUser);
