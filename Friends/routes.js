@@ -5,27 +5,27 @@ export default function FriendRoutes(app) {
         const friend = await dao.createFriend(req.body);
         res.json(friend);
     };
-    const deleteFriend = async (req, res) => {
-        const status = await dao.deleteFriend(req.params.friendId);
+    const deleteFriendship = async (req, res) => {
+        const status = await dao.deleteFriend(req.params.friendName);
         res.json(status);
     };
-    const findAllFriends = async (req, res) => {
-        const friends = await dao.findAllFriends();
+    const findAllFriendships = async (req, res) => {
+        const friends = await dao.findAllFriendships();
         res.json(friends);
     };
-    const findFriendByUser = async (req, res) => {
-        const { userId } = req.params;
-        const friends = await dao.findFriendByUser(userId);
+    const findFriendshipByUser = async (req, res) => {
+        const { userName } = req.params;
+        const friends = await dao.findFriendshipByUser(userName);
         res.json(friends);
     };
-    const updateFriend = async (req, res) => {
-        const { friendId } = req.params;
-        const status = await dao.updateFriend(friendId, req.body);
+    const updateFriendship = async (req, res) => {
+        const { friendName } = req.params;
+        const status = await dao.updateFriend(friendName, req.body);
         res.json(status);
     };
     app.post("/api/friends", createFriend);
-    app.get("/api/friends", findAllFriends);
-    app.get("/api/friends/user/:userId", findFriendByUser);
-    app.put("/api/friends/:friendId", updateFriend);
-    app.delete("/api/friends/:friendId", deleteFriend);
+    app.get("/api/friends", findAllFriendships);
+    app.get("/api/friends/user/:userName", findFriendshipByUser);
+    app.put("/api/friends/:friendName", updateFriendship);
+    app.delete("/api/friends/:friendName", deleteFriendship);
 }

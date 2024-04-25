@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const friendsSchema = new mongoose.Schema({
-    userId: String,
-    friendId: String,
+    userName: String,
+    friendName: String,
 },
     { collection: "friends" });
 

@@ -1,9 +1,9 @@
 import model from "./model.js";
-export const createFriend = (friendId, userId) => {
-    return model.create({friendId: friendId, userId: userId});
+export const createFriend = ({friendName, userName}) => {
+    return model.create({friendName: friendName, userName: userName});
 }
 export const findAllFriendships = () => model.find();
-export const findFriendshipById = (friendId) => model.findById(friendId);
-export const findFriendshipByUser = (userId) => model.find({userId: userId});
-export const updateFriendship = (friendId, friend) => model.updateOne({ _id: friendId }, { $set: friend });
-export const deleteFriendship = (friendId) => model.deleteOne({ _id: friendId });
+export const findFriendshipById = (friendName) => model.findById(friendName);
+export const findFriendshipByUser = (userName) => model.find({userName: userName});
+export const updateFriendship = (friendName, friend) => model.updateOne({ _id: friendName }, { $set: friend });
+export const deleteFriendship = (friendName) => model.deleteOne({ _id: friendName });
